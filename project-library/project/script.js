@@ -41,3 +41,12 @@ function eachBook(){
 
 // console.log(myLibrary);
 eachBook()
+
+
+const showButton = document.getElementById("show-form"); // button that opens the form
+const dialog = document.getElementById("book-dialog"); // dialog to show/hide 
+const bookForm = document.getElementById("book-form"); // get submmit event on form
+
+showButton.addEventListener("click", () => {
+  dialog.showModal()
+})
