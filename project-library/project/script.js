@@ -1,5 +1,5 @@
 
-const crypto = require('node:crypto');
+// const crypto = require('node:crypto');
 const myLibrary = [];
 
 function Book(title, author, numOfPages, read){
@@ -8,7 +8,7 @@ function Book(title, author, numOfPages, read){
   this.author = author;
   this.numOfPages = numOfPages;
   this.read = read;
-  this.ID = crypto.randomUUID();
+  this.ID = self.crypto.randomUUID();
 }
 
 Book.prototype.getReadStatus = function(){
