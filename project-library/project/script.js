@@ -39,7 +39,8 @@ function eachBook(){
 }
 
 
-// console.log(myLibrary);
+
+
 eachBook()
 
 
@@ -47,6 +48,55 @@ const showButton = document.getElementById("show-form"); // button that opens th
 const dialog = document.getElementById("book-dialog"); // dialog to show/hide 
 const bookForm = document.getElementById("book-form"); // get submmit event on form
 
-showButton.addEventListener("click", () => {
+showButton.addEventListener("click",function(){
   dialog.showModal()
 })
+
+bookForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+
+const title = document.getElementById("title").value;
+const author = document.getElementById("author").value;
+const pages = document.getElementById("pages").value;
+const hasRead = document.getElementById("read").checked;
+
+
+addBookToLibrary(title, author, pages, hasRead);
+
+displayBooks();
+bookForm.reset();
+dialog.close();
+
+
+});
+
+
+//display cards
+
+const display = document.getElementById("library-display");
+
+function displayBooks() {
+  // Clear the display so we don't duplicate books
+  display.innerHTML = "";
+
+  for (let i = 0; i < myLibrary.length; i++) {
+    const book = myLibrary[i];
+
+    // Create the card div
+    const card = document.createElement("div");
+    card.classList.add("book-card");
+
+    // Add content to the card
+    card.innerHTML = "<h3>" + book.title + "</h3>" +
+                     "<p>Author: " + book.author + "</p>" +
+                     "<p>Pages: " + book.numOfPages + "</p>" +
+                     "<p>" + book.getReadStatus() + "</p>";
+
+    // Attach the card to the display container
+    display.appendChild(card);
+  }
+}
+
+// Call it once at the bottom of your script so initial books show up
+displayBooks();
